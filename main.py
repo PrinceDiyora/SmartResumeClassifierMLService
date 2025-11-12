@@ -14,6 +14,8 @@ except Exception:
 
 app = FastAPI(title="Resume Role Predictor")
 
+
+
 if CORS_AVAILABLE:
     app.add_middleware(
         CORSMiddleware,
@@ -94,6 +96,9 @@ def predict_role(text: str):
         return {"role": "DevOps Engineer", "confidence": 0.68}
     return {"role": "General", "confidence": 0.5}
 
+@app.get("/")
+def root():
+    return {"message": "ML Service is running"}
 
 @app.get("/health")
 def health():
